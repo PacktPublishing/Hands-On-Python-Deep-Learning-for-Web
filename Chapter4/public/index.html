@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<title>TensorFlow.js Example - Iris Flower Classficiation</title>
+	</head>
+	<body>
+		<h1> TensorFlow.js Example - Iris Flower Classification </h1>
+		<hr>
+		<p>
+			First, train the model. Then, use the text boxes to try any dummy data.
+		</p>
+
+		<button id="train-btn">Train</button>
+
+		<hr><br>
+		<label for="sepLen">Sepal Length: </label>
+		<input type="number" id="sepLen" value="1" /><br>
+		<label for="sepWid">Sepal Width:&nbsp;&nbsp;</label>
+		<input type="number" id="sepWid" value="1" /><br>
+		<label for="petLen">Petal Length: </label>
+		<input type="number" id="petLen" value="1" /><br>
+		<label for="petWid">Petal Width:&nbsp;&nbsp;</label>
+		<input type="number" id="petWid" value="1" /><br>
+		<br>
+		<button id="send-btn" disabled="="true">Predict!</button>
+		<hr>
+		<h3> Result </h3>
+		<h4 id="res"></h4>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+
+			$('#train-btn').click(function(){
+				$('#train-btn').prop('disabled', true);
+				$('#train-btn').empty().append("Training...");
+				$.ajax({
+					type: 'POST',
+					url: "/train",
+					success: function(result) {
+						console.log(result);
+						$('#send-btn').prop('disabled', false);
+						$('#train-btn').empty().append("Trained!");
+					}
+				});
+			});
+
+			$('#send-btn').click(function(){
+				var sepLen = $('#sepLen').val();
+				var sepWid = $('#sepWid').val();
+				var petLen = $('#petLen').val();
+				var petWid = $('#petWid').val();
+				$.ajax({
+					type: 'POST',
+					url: "/predict",
+					data: {sepLen: sepLen, sepWid: sepWid, petLen: petLen, petWid: petWid},
+					success: function(result) {
+						console.log(result);
+						$('#res').empty().append(result);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
