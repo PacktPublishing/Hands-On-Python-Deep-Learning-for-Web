@@ -62,12 +62,9 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('/predict', function(req, res) {
-    var sepLen = req.body.sepLen;
-    var sepWid = req.body.sepWid;
-    var petLen = req.body.petLen;
-    var petWid = req.body.petWid;
 
-    var test = tf.tensor2d([sepLen, sepWid, petLen, petWid], [1,4]);
+    var test = tf.tensor2d([parseFloat(req.body.sepLen), parseFloat(req.body.sepWid), parseFloat(req.body.petLen), parseFloat(req.body.petWid)], [1,4]);
+
     var out = model.predict(test);
 
     var maxIndex = 0;
@@ -77,7 +74,7 @@ app.post('/predict', function(req, res) {
     	}
     }
 
-    console.log(maxIndex);
+    // console.log(maxIndex);
 
     ans = "Undetermined";
 
@@ -92,6 +89,8 @@ app.post('/predict', function(req, res) {
 			ans = "Versicolor";	
 		break;	
 	}
+
+    console.log(ans);
 	
 	res.send(ans);
 
