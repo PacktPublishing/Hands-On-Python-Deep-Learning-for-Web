@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Doodle Guess</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "/style.css" %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Number Guess</h3>
+        </div>
+        <div class="jumbotron">
+            <h3 class="jumbotronHeading">Draw inside this Box!</h3>
+            <div class="slidecontainer">
+                <p>Drag the slider to change the line width.</p>
+                <input type="range" min="10" max="50" value="15" id="myRange">
+                <p>Value: <span id="sliderValue"></span></p>
+                <br><br>
+            </div>
+            <div class="canvasDiv">
+                <canvas id="canvas" width="350" height="350"></canvas>
+                <br>
+                <p style="text-align:center;">
+                    <button class="btn btn-success" id="predict-btn" role="button">Predict</button>
+                    <button class="btn btn-primary" id="clearButton" role="button">Clear</button>
+                </p>
+            </div>
+        </div>
+        <div class="jumbotron">
+       
+                    <h3>Prediction Results</h3>
+             
+            <p id="result"></p>
+        </div>
+        <div id="csrf">{% csrf_token %}</div>
+        <footer class="footer">
+            <p>&copy; 2019 &middot; Anubhav Singh</p>
+        </footer>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="{% static "/index.js" %}"></script>
+    <script type="text/javascript">
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $("#predict-btn").click(function() {
+
+        var csrftoken = $('input[name=csrfmiddlewaretoken]').val();
+
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+        $('#predict-btn').prop('disabled', true);
+
+        var canvasObj = document.getElementById("canvas");
+        var img = canvasObj.toDataURL();
+        $.ajax({
+            type: "POST",
+            url: "/predict",
+            data: img,
+            success: function(data) {
+                console.log(data);
+                var tb = "<table class='table table-hover'><thead><tr><th>Item</th><th>Confidence</th></thead><tbody>";
+                var res = JSON.parse(data);
+                console.log(res);
+                
+                $('#result').empty.append(res.data);
+                $('#predict-btn').prop('disabled', false);
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
