@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="form_bg">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="text-center">Login Page</h2>
+                <br />
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="User id">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+                <br />
+                <div class="align-center">
+                    <button type="submit" class="btn btn-success" id="login">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
