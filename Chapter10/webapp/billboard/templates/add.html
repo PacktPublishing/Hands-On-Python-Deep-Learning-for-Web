@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-     <div class="row">
+    <div class="row">
         <div class="form_bg">
-            <form method="post">
+            <form method="post" id="form">
                 {% csrf_token %}
                 <h2 class="text-center">Add Bill</h2>
                 <br />
@@ -21,4 +21,13 @@
         </div>
     </div>
 </div>
+<script src="https://www.google.com/recaptcha/api.js?render=6Lfi6ncUAAAAAIaJgQCDaR3s-FGGczzo7Mefp0TQ"></script>
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lfi6ncUAAAAAIaJgQCDaR3s-FGGczzo7Mefp0TQ')
+        .then(function(token) {
+            $("#form").append('<input type="hidden" name="g-recaptcha-response" value="'+token+'" >');
+        });
+    });
+</script>
 {% endblock %}

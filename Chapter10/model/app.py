@@ -25,7 +25,7 @@ def remove_digits(s: str) -> str:
     res = s.translate(remove_digits)
     return res
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     req = dict(request.headers)
     item = {}
