@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Online Training Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <style>
+        @import url(http://fonts.googleapis.com/css?family=Oswald);
+
+        body{
+            font-family: 'Oswald', sans-serif;
+        }
+
+        h2{
+            display:inline-block;
+        }
+        .btn{
+            margin: 4px;
+            box-shadow: 1px 1px 5px #888888;
+        }
+
+        .btn-xs{
+            font-weight: 300;
+        }
+
+        .btn-fresh {
+        color: #fff;
+        background-color: #51bf87;
+        border-bottom:2px solid #41996c;
+        }
+
+        .btn-fresh:hover, .btn-sky.active:focus, .btn-fresh:focus, .open>.dropdown-toggle.btn-fresh {
+        color: #fff;
+        background-color: #66c796;
+        border-bottom:2px solid #529f78;
+        outline: none;
+        }
+
+
+        .btn-fresh:active, .btn-fresh.active {
+        color: #fff;
+        background-color: #47a877;
+        border-top:2px solid #39865f;
+        outline: none;
+        outline-offset: none;
+        margin-top: 2px;
+        }
+
+        .btn-hot {
+        color: #fff;
+        background-color: #db5566;
+        border-bottom:2px solid #af4451;
+        }
+
+        .btn-hot:hover, .btn-sky.active:focus, .btn-hot:focus, .open>.dropdown-toggle.btn-hot {
+        color: #fff;
+        background-color: #df6a78;
+        border-bottom:2px solid #b25560;
+        outline: none;}
+
+
+        .btn-hot:active, .btn-hot.active {
+        color: #fff;
+        background-color: #c04b59;
+        border-top:2px solid #9a3c47;
+        margin-top: 2px;
+        }
+
+
+        .btn:focus,
+        .btn:active:focus,
+        .btn.active:focus {
+            outline: none;
+            outline-offset: 0px;
+        }
+
+        a {color:#fff;}
+        a:hover {text-decoration:none; color:#fff;}
+
+    </style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <br />
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8" style="font-size: xx-large; text-align: center">
+                Current Accuracy: <span id="accr">{{ score }}</span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="well text-center">
+            {% if remain %}
+            <button type="button" id="train-btn" class="btn btn-fresh text-uppercase btn-lg">+25 Training</button>
+            {% else %}
+            <button type="button" id="train-btn" class="btn btn-fresh text-uppercase btn-lg" disabled>No more samples remaining</button>
+            {% endif %}
+            <br />
+            <br />
+            <button type="button" id="reset-btn" class="btn btn-hot text-uppercase btn-lg">Reset</button>
+        </div>
+    </div>
+    <script>
+    $("#train-btn").click(function() {
+
+        $.ajax({
+            type: "POST",
+            url: "/train_batch",
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+
+                $('#accr').each(function() {
+                    var $this = $(this);
+                    $(this).text(data.result);
+                    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                        duration: 1000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(this.Counter.toFixed(5));
+                        }
+                    });
+                });
+
+                if (data.remaining < 0) {
+                    $('#train-btn').prop("disabled", true).text("No more samples remaining");
+                }
+
+            }
+        });
+    });
+
+    $("#reset-btn").click(function() {
+
+        $.ajax({
+            type: "POST",
+            url: "/reset",
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+
+                $('#accr').each(function() {
+                    var $this = $(this);
+                    $(this).text(data.result);
+                    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                        duration: 1000,
+                        easing: 'swing',
+                        step: function() {
+                            $this.text(this.Counter.toFixed(5));
+                        }
+                    });
+                });
+
+                $('#train-btn').prop("disabled", false).text("+25 Training");
+
+            }
+        });
+    });
+    </script>
+</body>
