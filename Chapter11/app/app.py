@@ -8,7 +8,7 @@ from sklearn.neural_network import MLPClassifier
 
 np.random.seed(5)
 
-df = pd.read_csv("../data/heart.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/PacktPublishing/Hands-On-Python-Deep-Learning-for-Web/master/Chapter11/data/heart.csv")
 
 X = df.drop("target",axis=1)
 y = df["target"]
@@ -75,4 +75,4 @@ def index():
     return render_template("index.html", score=round(score, 5), remain = rem)
 
 if __name__ == '__main__':
-    app.run(port=9000, debug=True)
+    app.run()
