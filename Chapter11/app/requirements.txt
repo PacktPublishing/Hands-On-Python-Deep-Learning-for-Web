@@ -116,7 +116,7 @@ virtualenv==16.4.3
 w3lib==1.20.0
 wcwidth==0.1.7
 webencodings==0.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 widgetsnbextension==3.4.2
 wrapt==1.10.11
 WTForms==2.2.1
