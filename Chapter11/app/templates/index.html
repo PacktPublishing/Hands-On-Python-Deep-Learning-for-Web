@@ -106,60 +106,60 @@
         </div>
     </div>
     <script>
-    $("#train-btn").click(function() {
+        $("#train-btn").click(function() {
 
-        $.ajax({
-            type: "POST",
-            url: "/train_batch",
-            dataType: "json",
-            success: function(data) {
-                console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "/train_batch",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
 
-                $('#accr').each(function() {
-                    var $this = $(this);
-                    $(this).text(data.result);
-                    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                        duration: 1000,
-                        easing: 'swing',
-                        step: function() {
-                            $this.text(this.Counter.toFixed(5));
-                        }
+                    $('#accr').each(function() {
+                        var $this = $(this);
+                        $(this).text(data.result);
+                        jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                            duration: 1000,
+                            easing: 'swing',
+                            step: function() {
+                                $this.text(this.Counter.toFixed(5));
+                            }
+                        });
                     });
-                });
 
-                if (data.remaining < 0) {
-                    $('#train-btn').prop("disabled", true).text("No more samples remaining");
+                    if (data.remaining < 0) {
+                        $('#train-btn').prop("disabled", true).text("No more samples remaining");
+                    }
+
                 }
-
-            }
+            });
         });
-    });
 
-    $("#reset-btn").click(function() {
+        $("#reset-btn").click(function() {
 
-        $.ajax({
-            type: "POST",
-            url: "/reset",
-            dataType: "json",
-            success: function(data) {
-                console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "/reset",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
 
-                $('#accr').each(function() {
-                    var $this = $(this);
-                    $(this).text(data.result);
-                    jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
-                        duration: 1000,
-                        easing: 'swing',
-                        step: function() {
-                            $this.text(this.Counter.toFixed(5));
-                        }
+                    $('#accr').each(function() {
+                        var $this = $(this);
+                        $(this).text(data.result);
+                        jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+                            duration: 1000,
+                            easing: 'swing',
+                            step: function() {
+                                $this.text(this.Counter.toFixed(5));
+                            }
+                        });
                     });
-                });
 
-                $('#train-btn').prop("disabled", false).text("+25 Training");
+                    $('#train-btn').prop("disabled", false).text("+25 Training");
 
-            }
+                }
+            });
         });
-    });
     </script>
 </body>
