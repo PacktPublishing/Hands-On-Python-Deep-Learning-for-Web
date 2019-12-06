@@ -29,5 +29,61 @@
         {% block body %}
         {% endblock %}
     </div>
+
+    <div id="customerChatRoot" class="btn btn-warning" style="position: fixed; bottom: 32px; right: 32px;">Ask a question</div>
+    <script>
+        $(document).ready(function(){
+            window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            var finalTranscript = '';
+            var recognition = new window.SpeechRecognition();
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 10;
+            recognition.continuous = true;
+            recognition.onresult = (event) => {
+              let interimTranscript = '';
+              for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+                let transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                  finalTranscript += transcript;
+                } else {
+                  interimTranscript += transcript;
+                }
+              }
+              goDialogFlow(finalTranscript);
+              
+              finalTranscript = '';
+            }
+        
+            $('#customerChatRoot').click(function(){
+                recognition.start();
+                $(this).text('Speak!');
+            });
+        });
+
+        function goDialogFlow(text){
+            $.ajax({
+                type: "POST",
+                url: "https://gcp-api-232806.gateway.dialogflow.cloud.ushakov.co",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({ 
+                    "session": "test",
+                    "queryInput": {
+                    "text": {
+                        "text": text,
+                        "languageCode": "en"
+                        }
+                    } 
+                }),
+                success: function(data) {
+                    var res = data.queryResult.fulfillmentText;
+                    speechSynthesis.speak(new SpeechSynthesisUtterance(res));
+                },
+                error: function() {
+                    console.log("Internal Server Error");
+                }
+            });     
+        }
+    </script>
 </body>
 </html>
