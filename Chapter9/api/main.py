@@ -56,9 +56,9 @@ class Flask_Work(Resource):
         print('in vect')
         sentence = request.form['search']
         print(sentence)
-        test_df = pd.DataFrame([sentence], columns=['text'])
-        test_df['text'] = test_df['text'].apply(self.clean_text)
-        test_vectors = userid_vectorizer.transform(test_df['text'])
+        test_df = pd.DataFrame([sentence], columns=['Text'])
+        test_df['Text'] = test_df['Text'].apply(self.clean_text)
+        test_vectors = userid_vectorizer.transform(test_df['Text'])
         test_v_df = pd.DataFrame(test_vectors.toarray(), index=test_df.index,
                                  columns=userid_vectorizer.get_feature_names())
 
