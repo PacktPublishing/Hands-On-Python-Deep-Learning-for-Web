@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
 from nltk.corpus import stopwords
 from nltk.tokenize import WordPunctTokenizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 from flask import Flask, request, render_template, make_response
 from flask_wtf import FlaskForm
@@ -28,23 +28,17 @@ class TextFieldForm(FlaskForm):
 
 class Flask_Work(Resource):
     def __init__(self):
+        self.stopwordSet = set(stopwords.words("english"))
         pass
 
-    def clean_text(self, text):
-        ## Remove puncuation
-        text = text.translate(string.punctuation)
-
-        ## Convert words to lower case and split them
-        text = text.lower().split()
-
-        ## Remove stop words
-        stops = set(stopwords.words("english"))
-        text = [w for w in text if not w in stops and len(w) >= 3]
-
-        text = " ".join(text)
-
-        text = re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", text)
-        return text
+    def cleanText(line):        
+        line = line.translate(string.punctuation)
+        line = line.lower().split()
+        
+        line = [word for word in line if not word in self.stopwordSet and len(word) >= 3]
+        line = " ".join(line)
+        
+        return re.sub(r"[^A-Za-z0-9^,!.\/'+-=]", " ", line) 
 
     def get(self):
         headers = {'Content-Type': 'text/html'}
@@ -53,22 +47,20 @@ class Flask_Work(Resource):
     def post(self):
         f = open('model.pkl', 'rb')
         P, Q, userid_vectorizer = pickle.load(f), pickle.load(f), pickle.load(f)
-        print('in vect')
         sentence = request.form['search']
-        print(sentence)
-        test_df = pd.DataFrame([sentence], columns=['Text'])
-        test_df['Text'] = test_df['Text'].apply(self.clean_text)
-        test_vectors = userid_vectorizer.transform(test_df['Text'])
-        test_v_df = pd.DataFrame(test_vectors.toarray(), index=test_df.index,
+        test_data = pd.DataFrame([sentence], columns=['Text'])
+        test_data['Text'] = test_data['Text'].apply(self.cleanText)
+        test_vectors = userid_vectorizer.transform(test_data['Text'])
+        test_v_df = pd.DataFrame(test_vectors.toarray(), index=test_data.index,
                                  columns=userid_vectorizer.get_feature_names())
 
-        predict_item_rating = pd.DataFrame(np.dot(test_v_df.loc[0], Q.T), index=Q.index, columns=['Rating'])
-        top_recommendations = pd.DataFrame.sort_values(predict_item_rating, ['Rating'], ascending=[0])[:10]
+        predicted_ratings = pd.DataFrame(np.dot(test_v_df.loc[0], Q.T), index=Q.index, columns=['Rating'])
+        predictions = pd.DataFrame.sort_values(predicted_ratings, ['Rating'], ascending=[0])[:10]
 
-        JSONP_data = jsonpify(top_recommendations.to_json())
+        JSONP_data = jsonpify(predictions.to_json())
         return JSONP_data
 
-        return make_response(render_template('index.html'), 200, JSONP_data)
+        # return make_response(render_template('index.html'), 200, JSONP_data)
 
 
 api.add_resource(Flask_Work, '/')
