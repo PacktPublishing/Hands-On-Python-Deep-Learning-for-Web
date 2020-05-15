@@ -9,7 +9,8 @@ This is the code repository for [Hands-On Python Deep Learning for Web](https://
 **Integrating neural network architectures to build smart web apps with Flask, Django, and TensorFlow**
 
 ## What is this book about?
-First Paragraph from the Long Description
+When used effectively, deep learning techniques can help you develop intelligent web apps. In this book, you'll cover the latest tools and technological practices that are being used to implement deep learning in web development using Python.
+Starting with the fundamentals of machine learning, you'll focus on DL and the basics of neural networks, including common variants such as convolutional neural networks (CNNs). You'll learn how to integrate them into websites with the frontends of different standard web tech stacks. The book then helps you gain practical experience of developing a deep learning-enabled web app using Python libraries such as Django and Flask by creating RESTful APIs for custom models. Later, you'll explore how to set up a cloud environment for deep learning-based web deployments on Google Cloud and Amazon Web Services (AWS). 
 
 This book covers the following exciting features:
 * Explore deep learning models and implement them in your browser
