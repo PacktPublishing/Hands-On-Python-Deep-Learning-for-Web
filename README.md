@@ -56,13 +56,12 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 * Hands-On Web Scraping with Python [[Packt]](https://www.packtpub.com/big-data-and-business-intelligence/hands-web-scraping-python?utm_source=github&utm_medium=repository&utm_campaign=9781789533392) [[Amazon]](https://www.amazon.com/dp/1789533392)
 
 ## Get to Know the Authors
-**Anubhav Singh**
 
-Anubhav Singh, a web developer since before Bootstrap was launched, is an explorer of technologies, often pulling off crazy combinations of uncommon tech. An international rank holder in the Cyber Olympiad, he started off by developing his own social network and search engine as his first projects at the age of 15, which stood among the top 500 websites of India during their operational years. He's continuously developing software for the community in domains with roads less walked on. You can often catch him guiding students on how to approach ML or the web, or both together. He's also the founder of The Code Foundation, an AI-focused start-up. Anubhav is a Venkat Panchapakesan Memorial Scholarship awardee and an Intel Software Innovator.
+**Anubhav Singh**, a web developer since before Bootstrap was launched, is an explorer of technologies, often pulling off crazy combinations of uncommon tech. An international rank holder in the Cyber Olympiad, he started off by developing his own social network and search engine as his first projects at the age of 15, which stood among the top 500 websites of India during their operational years. He's continuously developing software for the community in domains with roads less walked on. You can often catch him guiding students on how to approach ML or the web, or both together. He's also the founder of The Code Foundation, an AI-focused start-up. Anubhav is a Venkat Panchapakesan Memorial Scholarship awardee and an Intel Software Innovator.
 
-**Sayak Paul**
 
-Sayak Paul is currently with PyImageSearch, where he applies deep learning to solve real-world problems in computer vision and bring solutions to edge devices. He is responsible for providing Q&A support to PyImageSearch readers. His areas of interest include computer vision, generative modeling, and more. Previously at DataCamp, Sayak developed projects and practice pools. Prior to DataCamp, Sayak worked at TCS Research and Innovation (TRDDC) on data privacy. There, he was a part of TCS's critically acclaimed GDPR solution called Crystal Ball. Outside of work, Sayak loves to write technical articles and speak at developer meetups and conferences.
+
+**Sayak Paul** is currently with PyImageSearch, where he applies deep learning to solve real-world problems in computer vision and bring solutions to edge devices. He is responsible for providing Q&A support to PyImageSearch readers. His areas of interest include computer vision, generative modeling, and more. Previously at DataCamp, Sayak developed projects and practice pools. Prior to DataCamp, Sayak worked at TCS Research and Innovation (TRDDC) on data privacy. There, he was a part of TCS's critically acclaimed GDPR solution called Crystal Ball. Outside of work, Sayak loves to write technical articles and speak at developer meetups and conferences.
 
 
 ## Other books by the authors
