@@ -2,7 +2,7 @@
 # Hands-On Python Deep Learning for Web
 
 
-<a href="https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085"><img src="https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/9/7/9781789956085-original.jpeg" alt="Hands-On Python Deep Learning for Web" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085"><img src="https://static.packt-cdn.com/products/9781789956085/cover/medium" alt="Hands-On Python Deep Learning for Web" height="256px" align="right"></a>
 
 This is the code repository for [Hands-On Python Deep Learning for Web](https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085) by Anubhav Singh and Sayak Paul, published by Packt.
 
