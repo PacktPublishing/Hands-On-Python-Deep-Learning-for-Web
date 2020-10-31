@@ -2,7 +2,7 @@
 # Hands-On Python Deep Learning for Web
 
 
-<a href="https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085"><img src="https://static.packt-cdn.com/products/9781789956085/cover/medium" alt="Hands-On Python Deep Learning for Web" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085"><img src="https://static.packt-cdn.com/products/9781789956085/cover/smaller" alt="Hands-On Python Deep Learning for Web" height="256px" align="right"></a>
 
 This is the code repository for [Hands-On Python Deep Learning for Web](https://www.packtpub.com/data/hands-on-python-deep-learning-for-web?utm_source=github&utm_medium=repository&utm_campaign=9781789956085) by Anubhav Singh and Sayak Paul, published by Packt.
 
@@ -58,7 +58,6 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ## Get to Know the Authors
 
 **Anubhav Singh**, a web developer since before Bootstrap was launched, is an explorer of technologies, often pulling off crazy combinations of uncommon tech. An international rank holder in the Cyber Olympiad, he started off by developing his own social network and search engine as his first projects at the age of 15, which stood among the top 500 websites of India during their operational years. He's continuously developing software for the community in domains with roads less walked on. You can often catch him guiding students on how to approach ML or the web, or both together. He's also the founder of The Code Foundation, an AI-focused start-up. Anubhav is a Venkat Panchapakesan Memorial Scholarship awardee and an Intel Software Innovator.
-
 
 
 **Sayak Paul** is currently with PyImageSearch, where he applies deep learning to solve real-world problems in computer vision and bring solutions to edge devices. He is responsible for providing Q&A support to PyImageSearch readers. His areas of interest include computer vision, generative modeling, and more. Previously at DataCamp, Sayak developed projects and practice pools. Prior to DataCamp, Sayak worked at TCS Research and Innovation (TRDDC) on data privacy. There, he was a part of TCS's critically acclaimed GDPR solution called Crystal Ball. Outside of work, Sayak loves to write technical articles and speak at developer meetups and conferences.
