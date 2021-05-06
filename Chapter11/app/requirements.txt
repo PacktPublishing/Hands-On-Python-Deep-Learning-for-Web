@@ -1,5 +1,5 @@
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 Flask-Jsonpify==1.5.0
 Flask-RESTful==0.3.7
 Flask-WTF==0.14.2
