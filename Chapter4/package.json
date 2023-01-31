@@ -13,6 +13,6 @@
     "@tensorflow/tfjs": "^0.15.1",
     "@tensorflow/tfjs-node": "^0.3.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.17.3"
   }
 }
